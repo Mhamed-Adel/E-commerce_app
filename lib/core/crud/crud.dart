@@ -118,7 +118,7 @@ class Crud {
       'lang': lang,
       'Authorization': token ?? ''
     };
-   return dio.get(
+   return await dio.get(
       url,
       queryParameters: query,
     );
@@ -137,7 +137,7 @@ class Crud {
       'lang': lang,
       'Authorization': token ?? ''
     };
-    return  dio.post(url, queryParameters: query, data: data);
+    return await dio.post(url, queryParameters: query, data: data);
   }
 
   //*************put***********//
@@ -153,6 +153,6 @@ class Crud {
       'lang': lang,
       'Authorization': token ?? '',
     };
-    return  dio.put(url, queryParameters: query, data: data);
+    return await dio.put(url, queryParameters: query, data: data);
   }
 }

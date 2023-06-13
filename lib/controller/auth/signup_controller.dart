@@ -32,7 +32,7 @@ class SignupControllerImp extends SignupController {
     update();
 
     if (await checkInternet()) {
-      await Crud.postData(url: AppLink.SIGNUP, data: {
+       Crud.postData(url: AppLink.SIGNUP, data: {
         'name': nameController.text,
         'email': emailController.text,
         'password': passwordController.text,

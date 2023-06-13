@@ -26,7 +26,7 @@ var  phoneConroller = TextEditingController();
   stateRequest = StateRequest.loading;
   update();
   if(await checkInternet()){
-    await Crud.getData(url: AppLink.PROFILE,token:token ).then((value) {
+     Crud.getData(url: AppLink.PROFILE,token:token ).then((value) {
 
       if(value.statusCode == 200){
         loginModel = LoginModel.fromJson(value.data);

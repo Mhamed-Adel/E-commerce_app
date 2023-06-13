@@ -35,7 +35,7 @@ void onInit() {
     stateRequest = StateRequest.loading;
     // Get.to(() => const CATEGORIESDatailsScreen());
     update();
-    await Crud.getData(
+     Crud.getData(
         url: AppLink.CATEGORIESDETAIL + id,
         token: myServices.sharedPreferences.getString('token'))
         .then((value) {

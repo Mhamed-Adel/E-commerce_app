@@ -24,7 +24,7 @@ late  StateRequest stateRequest;
     stateRequest = StateRequest.loading;
     update();
     if (await checkInternet()) {
-      await Crud.getData(
+      Crud.getData(
               url: AppLink.CART,
               token: token)
           .then((response) {
@@ -72,7 +72,7 @@ int  get quantity => _quantity;
 
   updateCart(String id, int? quantity) async {
     
-    await Crud.putData(
+     Crud.putData(
         url: AppLink.UPDATECARTS + id,
         token: myServices.sharedPreferences.getString('token').toString(),
         data: {'quantity': quantity}).then((response) {

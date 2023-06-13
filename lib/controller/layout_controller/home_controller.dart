@@ -38,7 +38,7 @@ class HomeController extends GetxController {
     stateRequest = StateRequest.loading;
     update();
     if (await checkInternet()) {
-      await Crud.getData(url: AppLink.HOME, token: token).then((value) {
+       Crud.getData(url: AppLink.HOME, token: token).then((value) {
         homeModel = HomeModel.fromJson(value.data);
         for (var element in homeModel!.data!.products) {
           favorites.addAll({element.id: element.inFavorites});
@@ -72,7 +72,7 @@ class HomeController extends GetxController {
   ChangeFavirotesModel? favModel;
   changeFavorites(int productId) async {
     favorites[productId] = !favorites[productId];
-    await Crud.postData(
+     Crud.postData(
         url: AppLink.FAVORITES,
         token: token,
         data: {'product_id': productId}).then((value) {
@@ -100,7 +100,7 @@ class HomeController extends GetxController {
     stateRequest = StateRequest.loading;
     update();
     if (await checkInternet()) {
-      await Crud.getData(url: AppLink.CATEGORIES).then((value) {
+       Crud.getData(url: AppLink.CATEGORIES).then((value) {
         catModel = CategoriesModel.fromJson(value.data);
         stateRequest = handleData(value.data);
         if (stateRequest == StateRequest.success) {
@@ -126,7 +126,7 @@ class HomeController extends GetxController {
   changeCart(productId) async {
     cart[productId] = !cart[productId];
     
-    await Crud.postData(
+     Crud.postData(
         url: AppLink.CART,
         token: token,
         data: {'product_id': productId}).then((value) {
@@ -163,7 +163,7 @@ class HomeController extends GetxController {
   searchProduct(String text)async{
     stateRequest = StateRequest.loading;
     
-  await  Crud.postData(url: AppLink.SEARCH,
+    Crud.postData(url: AppLink.SEARCH,
   token: token,
    data:{
       'text': text
