@@ -8,34 +8,22 @@ import 'package:test_app/core/shared/network/remote/end_points.dart';
 import 'package:test_app/models/cat_datails.dart';
 
 
+
 class CategoryController extends GetxController {
-@override
-void onInit() {
-  super.onInit();
-
-  getCatDetails(AppLink.CATEGORIESDETAIL);
-}
-
+  
 
   MyServices myServices = Get.find();
 
-  late StateRequest stateRequest;
+   StateRequest stateRequest = StateRequest.none;
   CategoryDetailModel? categoryDetailModel;  
-   
-   RxInt currentIndex = 0.obs;
-
-  changeIndex(int index){
-  currentIndex.value=index;
-  
-  }
-
   getCatDetails(
     String id,
+    
   ) async {
+    
     stateRequest = StateRequest.loading;
-    // Get.to(() => const CATEGORIESDatailsScreen());
     update();
-     Crud.getData(
+    await Crud.getData(
         url: AppLink.CATEGORIESDETAIL + id,
         token: myServices.sharedPreferences.getString('token'))
         .then((value) {

@@ -10,22 +10,23 @@ import '../../../models/home_data_model.dart';
 
 class BuildProducts extends GetView<HomeController> {
   final ProductsData product;
-  const BuildProducts({Key? key, required this.product}) : super(key: key);
+  final productController = Get.find<ProductController>();
+  BuildProducts({Key? key, required this.product}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final productController = Get.find<ProductController>();
+    
     return Card(
       margin: const EdgeInsets.only(left: 26, bottom: 4),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      child: SizedBox(
-        width: double.infinity,
-        child: Stack(
-          children: [
-            GestureDetector(
-              onTap: () {
-                productController.getProductData(product.id);
-              },
-              child: Container(
+      child: GestureDetector(
+        onTap: () {
+          productController.getProductData(product.id);
+        },
+        child: SizedBox(
+          width: 200,
+          child: Stack(
+            children: [
+              Container(
                 margin: const EdgeInsets.only(left: 10, top: 8),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,12 +65,13 @@ class BuildProducts extends GetView<HomeController> {
                       ],
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           '${product.price}\$',
                           style: const TextStyle(fontSize: 17),
                         ),
-                        const Spacer(),
+                        
                         if (product.oldPrice != product.price)
                           Container(
                             decoration: BoxDecoration(
@@ -94,22 +96,22 @@ class BuildProducts extends GetView<HomeController> {
                   ],
                 ),
               ),
-            ),
-            Positioned(
-              right: 0,
-              child: IconButton(
-                onPressed: () {
-                  controller.changeFavorites(product.id);
-                },
-                icon: Icon(
-                  IconlyBold.heart,
-                  color: controller.favorites[product.id]
-                      ? kdefaultColor
-                      : Colors.grey,
+              Positioned(
+                right: 0,
+                child: IconButton(
+                  onPressed: () {
+                    controller.changeFavorites(product.id);
+                  },
+                  icon: Icon(
+                    IconlyBold.heart,
+                    color: controller.favorites[product.id]
+                        ? kdefaultColor
+                        : Colors.grey,
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

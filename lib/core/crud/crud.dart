@@ -100,7 +100,7 @@ class Crud {
     dio = Dio(BaseOptions(
       baseUrl: 'https://student.valuxapps.com/api/',
       receiveDataWhenStatusError: true,
-      connectTimeout: const Duration(seconds: 10),
+      
       
     ));
     
@@ -118,7 +118,7 @@ class Crud {
       'lang': lang,
       'Authorization': token ?? ''
     };
-   return await dio.get(
+    return  dio.get(
       url,
       queryParameters: query,
     );
@@ -137,7 +137,7 @@ class Crud {
       'lang': lang,
       'Authorization': token ?? ''
     };
-    return await dio.post(url, queryParameters: query, data: data);
+    return  dio.post(url, queryParameters: query, data: data);
   }
 
   //*************put***********//
@@ -153,6 +153,6 @@ class Crud {
       'lang': lang,
       'Authorization': token ?? '',
     };
-    return await dio.put(url, queryParameters: query, data: data);
+    return  dio.put(url, queryParameters: query, data: data);
   }
 }

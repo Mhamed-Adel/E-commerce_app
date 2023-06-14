@@ -44,7 +44,7 @@ class AppLoginControllerImplemt extends AppLoginController {
     stateRequest = StateRequest.loading;
     update();
     if (await checkInternet()) {
-       Crud.postData(url: AppLink.LOGIN, data: {
+      await Crud.postData(url: AppLink.LOGIN, data: {
         'email': emailController.text,
         'password': passwordController.text,
       }).then((value) {

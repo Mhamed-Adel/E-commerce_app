@@ -34,7 +34,8 @@ final  DataFavorites model;
                   const SizedBox(
                     height: 15,
                   ),
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  Row(mainAxisAlignment: MainAxisAlignment.center, 
+                  children: [
                     Expanded(
                       child: defaultText(
                           align: TextAlign.center,
@@ -84,7 +85,8 @@ final  DataFavorites model;
                         text: '${model.product.discount}%',
                         size: 15,
                         color: Colors.white),
-                  )),
+                  )
+                  ),
           ]),
         ),
       );

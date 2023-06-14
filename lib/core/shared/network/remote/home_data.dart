@@ -4,12 +4,17 @@
 // import '../../../crud/crud.dart';
 // import '../../../middleware/middleware.dart';
 
+// import '../../../crud/crud.dart';
+// import '../../components/constants.dart';
+// import 'end_points.dart';
+
 // class HomeData {
-//   MyMiddleware middleware = Get.put(MyMiddleware());
-//   Crud crud;
-//   HomeData(this.crud);
+  
+  
+  
 //   getData() async {
-//     await Crud.getData( url:AppLink.HOME,token:middleware.token);
+//   var response =  await Crud.getData( url:AppLink.HOME,token:token);
+//     return response.fold((l) => l, (r) => r);
     
 //   }
 // }

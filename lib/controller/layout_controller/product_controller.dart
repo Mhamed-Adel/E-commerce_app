@@ -50,7 +50,7 @@ class ProductController extends GetxController {
         
 
     if (await checkInternet()) {
-       Crud.getData(
+      await Crud.getData(
         url: 'products/$productId',
         token: token,
       ).then((response) {

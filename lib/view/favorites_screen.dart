@@ -20,28 +20,28 @@ class FavoritesScreen extends GetView<FavoritesController>{
           fallback: (context) => const Center(
               child: LinearProgressIndicator()),
           builder: (context) => controller.favoritesModel!.data.data.isNotEmpty
-              ? Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: GridView.count(
-                          physics: const BouncingScrollPhysics(),
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 2,
-                          mainAxisSpacing: 2,
-                          childAspectRatio: 1 / 1.20,
-                          children: List.generate(
-                              controller.favoritesModel!.data.data.length,
-                              (index) {
-                            return BuildFavItems(
-                              model:controller.favoritesModel!.data.data[index]);
-                          }),
-                        ),
-                      )
-                    ],
-                  ),
-                )
+              ? Column(
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: GridView.count(
+                        physics: const BouncingScrollPhysics(),
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 2,
+                        mainAxisSpacing: 2,
+                        childAspectRatio: 1 / 1.20,
+                        children: List.generate(
+                            controller.favoritesModel!.data.data.length,
+                            (index) {
+                          return BuildFavItems(
+                            model:controller.favoritesModel!.data.data[index]);
+                        }),
+                      ),
+                    ),
+                  )
+                ],
+              )
               : Center(
                   child: defaultText(text: 'No Items in Favorites', size: 24)
                       .animate()

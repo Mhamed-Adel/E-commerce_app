@@ -26,7 +26,7 @@ class FavoritesController extends GetxController {
   getFavoritesData() async {
     stateRequest = StateRequest.loading;
     if (await checkInternet()) {
-       Crud.getData(url: AppLink.FAVORITES, token: token).then((response) {
+      await Crud.getData(url: AppLink.FAVORITES, token: token).then((response) {
         
         stateRequest = handleData(response.data);
         if (StateRequest.success == stateRequest) {

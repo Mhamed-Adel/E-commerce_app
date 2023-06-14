@@ -25,7 +25,7 @@ getUserData ();
   stateRequest =StateRequest.loading;
   update();
   if(await checkInternet()){
-      Crud.getData(url:AppLink.PROFILE , token: token ).then((value) {
+    await  Crud.getData(url:AppLink.PROFILE , token: token ).then((value) {
       model =LoginModel.fromJson(value.data);
       stateRequest = handleData(value.data);
       if(model!.status!){

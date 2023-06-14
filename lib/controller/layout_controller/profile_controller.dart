@@ -26,7 +26,7 @@ var  phoneConroller = TextEditingController();
   stateRequest = StateRequest.loading;
   update();
   if(await checkInternet()){
-     Crud.getData(url: AppLink.PROFILE,token:token ).then((value) {
+    await Crud.getData(url: AppLink.PROFILE,token:token ).then((value) {
 
       if(value.statusCode == 200){
         loginModel = LoginModel.fromJson(value.data);
@@ -42,7 +42,8 @@ var  phoneConroller = TextEditingController();
       }
       stateRequest = StateRequest.serverFaluire;
     });
-  }else{
+  }
+  else{
     stateRequest = StateRequest.internetFaluire;
   }
   update();

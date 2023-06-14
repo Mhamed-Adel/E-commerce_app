@@ -2,13 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_app/core/shared/components/constants.dart';
 
 import '../../../controller/layout_controller/categories_controller.dart';
 import '../../../controller/layout_controller/home_controller.dart';
 import '../../../core/functions/handle_dataview.dart';
 import '../../../core/shared/components/components.dart';
 import '../../../models/cat_model.dart';
+import '../../category_screen/category_datail.dart';
 
 
 
@@ -27,10 +27,10 @@ class BuildCategoriesPage extends StatelessWidget {
               widget: ConditionalBuilder(
                 condition: controller.catModel != null,
                 fallback: (context) => const Center(child:LinearProgressIndicator()),
-                builder: (context) => SizedBox(
-                  height: 70,
+                builder: (context) => Expanded(
                   child: ListView.separated(
-                      scrollDirection: Axis.horizontal,
+                    
+                      scrollDirection: Axis.vertical,
                       itemBuilder: (context, index) =>
                           builCatItems(controller.catModel!.data!,
                           index
@@ -44,14 +44,15 @@ class BuildCategoriesPage extends StatelessWidget {
           );
     
 
-   } 
-   Widget builCatItems(CatData catModel,index)=> Obx(
-      ()=> Align(
+  } 
+  Widget builCatItems(CatData catModel,index)=>
+        Align(
         alignment: Alignment.center,
         child: GestureDetector(
-          onTap: () {
-            controller.changeIndex(index);
-            controller.getCatDetails(catModel.data![index].id.toString());
+          onTap: () async {
+        Get.to(() => CATEGORIESDatailsScreen(categoryname : catModel.data![index].name! ));
+        await controller.getCatDetails(catModel.data![index].id.toString());
+            
           },
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 10),
@@ -60,7 +61,7 @@ class BuildCategoriesPage extends StatelessWidget {
               top: 5,
             ),
             decoration: BoxDecoration(
-              color:  controller.currentIndex.value == index ? kdefaultColor : Colors.white,
+              color:   Colors.white,
               borderRadius: BorderRadius.circular(10),
               boxShadow: const [
                 BoxShadow(
@@ -76,8 +77,7 @@ class BuildCategoriesPage extends StatelessWidget {
                   imageUrl: '${catModel.data![index].image}',
                   width: 20,
                   height: 20,
-                  placeholder: (context, url) =>
-                      const CircularProgressIndicator(),
+                  
                   errorWidget: (context, url, error) =>
                       const Center(child: Icon(Icons.error, size: 15)),
                 ),
@@ -87,14 +87,14 @@ class BuildCategoriesPage extends StatelessWidget {
                 defaultText(
                   text: '${catModel.data![index].name}',
                   size: 13,
-                  color: controller.currentIndex.value == index ? Colors.white : Colors.black,
+                  
                   weight: FontWeight.w600,
                 ),
               ],
             ),
           ),
         ),
-      ),
-    );
+      )
+    ;
   
 }

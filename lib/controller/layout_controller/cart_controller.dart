@@ -22,9 +22,9 @@ class CartController extends GetxController {
 late  StateRequest stateRequest;
   getCartData() async {
     stateRequest = StateRequest.loading;
-    update();
+    
     if (await checkInternet()) {
-      Crud.getData(
+    await  Crud.getData(
               url: AppLink.CART,
               token: token)
           .then((response) {
