@@ -18,7 +18,7 @@ class HomeScreen extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    
+    Get.put(HomeController());
     return GetBuilder<HomeController>(
       builder: (_) => HandlingDataView(
         stateRequest: controller.stateRequest,
@@ -28,11 +28,12 @@ class HomeScreen extends GetView<HomeController> {
                 controller.homeModel != null && controller.catModel != null,
             builder: (context) {
               return SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-              // ***************** SEARCH BAR ****************************//
-              
+                // ***************** SEARCH BAR ****************************//
+                
                     const SearchWidget(),
                     controller.isSearch
                         ? Container(
@@ -52,9 +53,7 @@ class HomeScreen extends GetView<HomeController> {
                                 itemCount: controller
                                     .searchModel!.data.data.length),
                           )
-                        : Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
+                        : 
                               const SizedBox(
                                 height: 20,
                               ),
@@ -63,9 +62,9 @@ class HomeScreen extends GetView<HomeController> {
                                 child: defaultText(
                                     text: 'Special Offers', size: 16),
                               ),
-              
-              //************************   BUNNER  *************************************//
-              
+                
+                //************************   BUNNER  *************************************//
+                
                               Container(
                                 height: 130,
                                 margin: const EdgeInsets.only(
@@ -106,9 +105,9 @@ class HomeScreen extends GetView<HomeController> {
                                   ),
                                 ],
                               ),
-              
-              // ************************** CATEGORIES *******************************//
-              
+                
+                // ************************** CATEGORIES *******************************//
+                
                               Container(
                                 height: 70,
                                 width: double.infinity,
@@ -143,9 +142,9 @@ class HomeScreen extends GetView<HomeController> {
                                   ],
                                 ),
                               ),
-              
-              // ************************* products ********************************//
-              
+                
+                // ************************* products ********************************//
+                
                               Container(
                                 alignment: Alignment.centerLeft,
                                 //  margin: const EdgeInsetsDirectional.only(start: 5),
@@ -164,10 +163,9 @@ class HomeScreen extends GetView<HomeController> {
                               const SizedBox(
                                 height: 15,
                               ),
-                            ],
-                          ),
-              
-              /*   defaultText(text: '     Popular Now', size: 15),
+                           
+                
+                /*   defaultText(text: '     Popular Now', size: 15),
                   const SizedBox(
                     height: 15,
                   ),

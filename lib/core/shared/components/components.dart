@@ -135,15 +135,19 @@ Widget defaultMaterialButton({
   onPressed:onPress,
   textColor: isActive==true? kdefaultColor : Colors.grey ,
   shape: const CircleBorder(),
-  child: Column(children: [
+  child: Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
   Icon(icon,
   color: isActive==true? kdefaultColor : Colors.grey ,
   
   ),
   Text(text,
   style: const TextStyle(
-  height: 1.6,
-  fontFamily: 'Sora'
+  height: 1.7,
+  
+  fontFamily: 'Sora',
+  
   ),
   )
   ],),

@@ -10,11 +10,11 @@ import '../../../models/home_data_model.dart';
 
 class BuildProducts extends GetView<HomeController> {
   final ProductsData product;
-  final productController = Get.find<ProductController>();
-  BuildProducts({Key? key, required this.product}) : super(key: key);
+  
+  const BuildProducts({Key? key, required this.product}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    
+    final productController = Get.put(ProductController());
     return Card(
       margin: const EdgeInsets.only(left: 26, bottom: 4),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -23,7 +23,7 @@ class BuildProducts extends GetView<HomeController> {
           productController.getProductData(product.id);
         },
         child: SizedBox(
-          width: 200,
+          width: 180,
           child: Stack(
             children: [
               Container(

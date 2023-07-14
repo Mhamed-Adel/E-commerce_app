@@ -50,4 +50,6 @@ class FavoritesController extends GetxController {
     }
     update();
   }
+
+  
 }

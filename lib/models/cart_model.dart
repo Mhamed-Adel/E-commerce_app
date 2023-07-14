@@ -1,7 +1,7 @@
 class CartModel {
   bool? status;
   String? message;
-  Data? data;
+  CartData? data;
 
   CartModel(
     {this.status,
@@ -12,22 +12,22 @@ class CartModel {
   CartModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
-    data = json['data'] != null ? Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? CartData.fromJson(json['data']) : null;
   }
 }
 
-class Data {
+class CartData {
   late List<CartItems> cartItems;
   dynamic subTotal;
   dynamic total;
 
-  Data(
+  CartData(
     {required this.cartItems,
     this.total,
     this.subTotal,}
   );
 
-  Data.fromJson(Map<String, dynamic> json) {
+  CartData.fromJson(Map<String, dynamic> json) {
     if (json['cart_items'] != null) {
       cartItems = <CartItems>[];
       json['cart_items'].forEach((v) {
@@ -47,7 +47,8 @@ class CartItems {
   CartItems(
     {this.id,
     this.quantity,
-    this.product,}
+    this.product,
+    }
   );
 
   CartItems.fromJson(Map<String, dynamic> json) {

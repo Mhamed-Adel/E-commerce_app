@@ -10,6 +10,7 @@ class MyServices extends GetxService {
   Future<MyServices> init() async {
   sharedPreferences =   await SharedPreferences.getInstance() ; 
   Crud.init();
+  Crudd.init();
   return this ; 
   
   }

@@ -38,4 +38,14 @@ credit=json['credit'];
 token=json['token'];
 }
 
+Map<String,dynamic> toMap(){
+    return {
+      'name' : name,
+      'email' : email,
+      'phone' : phone,
+      'token' : token,
+      'image' : image,
+    };
+  }
+
 }

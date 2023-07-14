@@ -17,7 +17,7 @@ class BuildCategoriesPage extends StatelessWidget {
 
   BuildCategoriesPage({Key? key,})
       : super(key: key);
-  final controller = Get.put(CategoryController());
+  final catController = Get.put(CategoryController());
 
   @override
   Widget build(BuildContext context) {
@@ -49,9 +49,10 @@ class BuildCategoriesPage extends StatelessWidget {
         Align(
         alignment: Alignment.center,
         child: GestureDetector(
-          onTap: () async {
-        Get.to(() => CATEGORIESDatailsScreen(categoryname : catModel.data![index].name! ));
-        await controller.getCatDetails(catModel.data![index].id.toString());
+          onTap: ()  {
+         catController.getCatDetails(catModel.data![index].id.toString()).then((_) => 
+        Get.to(() => CATEGORIESDatailsScreen(categoryname : catModel.data![index].name! ))
+        );
             
           },
           child: Container(

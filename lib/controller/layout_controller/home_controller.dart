@@ -3,7 +3,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_app/controller/layout_controller/cart_controller.dart';
+import 'package:test_app/controller/layout_controller/cart/cart_controller.dart';
 import 'package:test_app/controller/layout_controller/favorites_controller.dart';
 import 'package:test_app/core/crud/crud.dart';
 import 'package:test_app/core/functions/check_internet.dart';
@@ -72,6 +72,7 @@ class HomeController extends GetxController {
   ChangeFavirotesModel? favModel;
   changeFavorites(int productId)  {
     favorites[productId] = !favorites[productId];
+    var controller = Get.put(FavoritesController());
      Crud.postData(
         url: AppLink.FAVORITES,
         token: token,
@@ -79,9 +80,10 @@ class HomeController extends GetxController {
       favModel = ChangeFavirotesModel.fromJson(value.data);
       if (favModel!.status) {
         stateRequest = StateRequest.success;
-        Get.find<FavoritesController>().getFavoritesData();
+        controller.getFavoritesData();
       } else {
         favorites[productId] = !favorites[productId];
+        controller.getFavoritesData();
         Get.defaultDialog(title: 'Failed', middleText: 'Failed to get data');
         stateRequest = StateRequest.failure;
       }
@@ -132,7 +134,7 @@ class HomeController extends GetxController {
         data: {'product_id': productId}).then((value) {
       favModel = ChangeFavirotesModel.fromJson(value.data);
       if (favModel!.status == true) {
-        Get.find<CartController>().getCartData();
+        Get.put(CartController()).getCartData();
         // Get.snackbar('Cart', favModel!.message,);
         stateRequest = StateRequest.success;
       } else {

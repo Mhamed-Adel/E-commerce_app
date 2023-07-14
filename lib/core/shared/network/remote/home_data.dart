@@ -8,16 +8,25 @@
 // import '../../components/constants.dart';
 // import 'end_points.dart';
 
-// class HomeData {
+import 'package:test_app/core/crud/crud.dart';
+
+import '../../components/constants.dart';
+import 'end_points.dart';
+
+class HomeData {
+  
+
   
   
   
-//   getData() async {
-//   var response =  await Crud.getData( url:AppLink.HOME,token:token);
-//     return response.fold((l) => l, (r) => r);
+  getData() async {
+  var response =  await Crudd.getData( url:AppLink.CATEGORIES,token:token);
+    return response.fold((l) => l, (r) => r);
     
-//   }
-// }
+  }
+
+  
+}
 
 // import 'package:test_app/core/crud/crud.dart';
 // import 'package:test_app/core/shared/components/constants.dart';

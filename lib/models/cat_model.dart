@@ -1,7 +1,13 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 class CategoriesModel {
   bool? status;
   String? message;
   CatData? data;
+  CategoriesModel({
+    this.status,
+    this.message,
+    this.data,
+  });
 
 
   CategoriesModel.fromJson(Map<String, dynamic> json) {
@@ -26,6 +32,20 @@ class CatData {
   dynamic prevPageUrl;
   int? to;
   int? total;
+  CatData({
+    this.currentPage,
+    this.data,
+    this.firstPageUrl,
+    this.from,
+    this.lastPage,
+    this.lastPageUrl,
+    required this.nextPageUrl,
+    this.path,
+    this.perPage,
+    required this.prevPageUrl,
+    this.to,
+    this.total,
+  });
 
 
   CatData.fromJson(Map<String, dynamic> json) {
@@ -52,6 +72,11 @@ class Data {
   int? id;
   String? name;
   dynamic image;
+  Data({
+    this.id,
+    this.name,
+    required this.image,
+  });
 
   
 

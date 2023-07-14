@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_app/controller/layout_controller/cart_controller.dart';
+import 'package:test_app/controller/layout_controller/cart/cart_controller.dart';
 import 'package:test_app/view/widgets/cart/custom_button.dart';
 
 import '../../../controller/layout_controller/home_controller.dart';
@@ -11,7 +11,7 @@ import '../../../core/shared/components/constants.dart';
 import '../../../models/cart_model.dart';
 
 class BuildCartsItems extends GetView<CartController> {
-  final Data model;
+  final CartData model;
   final int index;
 
   const BuildCartsItems({super.key, required this.model, required this.index});
@@ -97,7 +97,9 @@ class BuildCartsItems extends GetView<CartController> {
                                   radius: 18,
                                   backgroundColor: const Color(0XFFF0F4F4),
                                   child: GetBuilder<HomeController>(
-                                    builder: (controller) => IconButton(
+                                    builder: (controller) =>
+                                    controller.favorites.isNotEmpty ?
+                                     IconButton(
                                         padding: EdgeInsets.zero,
                                         iconSize: 20,
                                         onPressed: () {
@@ -110,7 +112,7 @@ class BuildCartsItems extends GetView<CartController> {
                                                     .product!
                                                     .id!]
                                                 ? kdefaultColor
-                                                : Colors.grey)),
+                                                : Colors.grey)) : const Icon(Icons.favorite_sharp),
                                   )),
                             )
                           ],

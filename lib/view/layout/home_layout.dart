@@ -19,7 +19,7 @@ class HomeLayout extends StatelessWidget {
     return GetBuilder<LayoutControllerImp>(
       
       builder: (controller) => Scaffold(
-          drawer: const AppDrawer(),
+          drawer:  const AppDrawer(),
           appBar: AppBar(
             toolbarHeight: 80,
             
@@ -52,54 +52,57 @@ class HomeLayout extends StatelessWidget {
           //bottomAppBar
           
           bottomNavigationBar: BottomAppBar(
-            height: 80,
+            height: 90,
             
             shape: const CircularNotchedRectangle(),
             notchMargin: 7,
 
             elevation: 10,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Expanded(
-                child: Row(
-                  
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    defaultMaterialButton(
-                      onPress: (){
-                        controller.chnagePages(0);
-                      }, 
-                      icon: controller.currentIndex != 0 ? IconlyLight.home : IconlyBold.home, 
-                      isActive: controller.currentIndex == 0 ? true : false, 
-                      text: 'Home'),
-                    defaultMaterialButton(
-                      onPress: (){
-                        controller.chnagePages(1);
-                      }, 
-                      icon: controller.currentIndex != 1 ? IconlyLight.category : IconlyBold.category, 
-                      isActive: controller.currentIndex == 1 ? true : false, 
-                      text: 'Categories'),
-                    const SizedBox(
-                      width: 15,
-                    ),
-                    defaultMaterialButton(
-                      onPress: (){
-                        controller.chnagePages(2);
-                      }, 
-                      icon: controller.currentIndex != 2 ? Icons.favorite_border_sharp :Icons.favorite, 
-                      isActive: controller.currentIndex == 2 ? true : false, 
-                      text: 'Favorites'),
-                    defaultMaterialButton(
-                      onPress: (){
-                        // controller.chnagePages(3);
-                        Get.to(()=>   const CartScreen());
-                      }, 
-                      icon: Icons.shopping_cart_outlined, 
-                      isActive: controller.currentIndex == 3 ? true : false, 
-                      text: 'Cart'),
-                  ],
+            child: Row(
+              
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Expanded(
+                  child: defaultMaterialButton(
+                    onPress: (){
+                      controller.chnagePages(0);
+                    }, 
+                    icon: controller.currentIndex != 0 ? IconlyLight.home : IconlyBold.home, 
+                    isActive: controller.currentIndex == 0 ? true : false, 
+                    text: 'Home'),
                 ),
-              ),
+                Expanded(
+                  child: defaultMaterialButton(
+                    onPress: (){
+                      controller.chnagePages(1);
+                    }, 
+                    icon: controller.currentIndex != 1 ? IconlyLight.category : IconlyBold.category, 
+                    isActive: controller.currentIndex == 1 ? true : false, 
+                    text: 'Categories'),
+                ),
+                const SizedBox(
+                  width: 15,
+                ),
+                Expanded(
+                  child: defaultMaterialButton(
+                    onPress: (){
+                      controller.chnagePages(2);
+                    }, 
+                    icon: controller.currentIndex != 2 ? Icons.favorite_border_sharp :Icons.favorite, 
+                    isActive: controller.currentIndex == 2 ? true : false, 
+                    text: 'Favorites'),
+                ),
+                Expanded(
+                  child: defaultMaterialButton(
+                    onPress: (){
+                      // controller.chnagePages(3);
+                      Get.to(()=>   const CartScreen());
+                    }, 
+                    icon: Icons.shopping_cart_outlined, 
+                    isActive: controller.currentIndex == 3 ? true : false, 
+                    text: 'Cart'),
+                ),
+              ],
             ),
           )),
     );

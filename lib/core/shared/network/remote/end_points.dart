@@ -18,7 +18,11 @@ static const CATEGORIESDETAIL = 'categories/';
 static const CART = 'carts';
 static const UPDATECARTS = 'carts/';
 static const PROFILE = 'profile';
+static const UPDATEPROFILE = 'update-profile';
 static const SEARCH = 'products/search';
+static const Address = 'addresses';
+static const DeleteAddress = 'addresses/';
+static const Orders = 'orders';
 
 
 

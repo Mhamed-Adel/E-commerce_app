@@ -16,7 +16,7 @@ class CategoryController extends GetxController {
 
    StateRequest stateRequest = StateRequest.none;
   CategoryDetailModel? categoryDetailModel;  
-  getCatDetails(
+Future<void>  getCatDetails(
     String id,
     
   ) async {

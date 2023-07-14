@@ -124,8 +124,10 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_app/controller/layout_controller/cart_controller.dart';
+import 'package:test_app/controller/layout_controller/cart/address_controller.dart';
+import 'package:test_app/controller/layout_controller/cart/cart_controller.dart';
 import 'package:test_app/core/functions/handle_dataview.dart';
+import 'package:test_app/view/drawer/add_address.dart';
 import 'package:test_app/view/widgets/cart/build_carts_items.dart';
 import '../core/shared/components/components.dart';
 
@@ -134,12 +136,12 @@ class CartScreen extends GetView<CartController> {
   @override
   Widget build(BuildContext context) {
     Get.put(CartController());
+    
     return Scaffold(
       appBar: AppBar(
         title: defaultText(text: 'Cart', size: 20, color: Colors.black),
       ),
       body: GetBuilder<CartController>(
-        
         builder: (_) => Padding(
           padding: const EdgeInsets.only(top: 15),
           child: HandlingDataView(
@@ -211,10 +213,11 @@ class CartScreen extends GetView<CartController> {
                           height: 5,
                         ),
                         defaultText(
-                            text: 'Shipping',
-                            weight: FontWeight.w400,
-                            size: 18,
-                            color: const Color(0xFF264446)),
+                          text: 'Shipping',
+                          weight: FontWeight.w400,
+                          size: 18,
+                          color: const Color(0xFF264446),
+                        ),
                         const Divider(),
                         Row(
                           children: [
@@ -236,7 +239,9 @@ class CartScreen extends GetView<CartController> {
                           height: 15,
                         ),
                         defaultButton(
-                          onPress: () {},
+                          onPress: () {
+                          
+                          },
                           text: 'CheckOut',
                         )
                       ],

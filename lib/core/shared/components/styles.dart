@@ -29,6 +29,7 @@ class ThemeServices {
       unselectedItemColor: Colors.grey,
       type: BottomNavigationBarType.fixed,
     ),
+    
   );
   static ThemeData darkTheme = ThemeData.dark().copyWith(
     colorScheme: ColorScheme.fromSwatch(
