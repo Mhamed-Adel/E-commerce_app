@@ -142,29 +142,27 @@ final  AppLoginControllerImplemt controller = Get.put(AppLoginControllerImplemt(
     bottomNavigationBar: BottomAppBar(
       elevation: 0.0,
       color:  const Color(0xFFF9F9F9),
-      child: Expanded(
-        child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          defaultText(
-                              text: 'Don\'t have an account? ',
-                              size: 16,
-                              weight: FontWeight.bold,
-                              color: Colors.grey
-                              
-                              ),
-                          TextButton(
-                              onPressed: () {},
-                              child: defaultTextButton(
-                                text: 'SignUp',
-                                onPressed: () {
-                                controller.goToSignUp();
-                                },
-                                fontSize: 16,
-                              )),
-                        ],
-                      ),
-      ),
+      child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        defaultText(
+                            text: 'Don\'t have an account? ',
+                            size: 16,
+                            weight: FontWeight.bold,
+                            color: Colors.grey
+                            
+                            ),
+                        TextButton(
+                            onPressed: () {},
+                            child: defaultTextButton(
+                              text: 'SignUp',
+                              onPressed: () {
+                              controller.goToSignUp();
+                              },
+                              fontSize: 16,
+                            )),
+                      ],
+                    ),
     ),
     );
   }

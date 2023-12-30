@@ -2,7 +2,6 @@
 
 import 'package:get/get.dart';
 import 'package:test_app/core/shared/components/constants.dart';
-import 'package:test_app/core/shared/network/remote/cart_data.dart';
 import 'package:test_app/models/cart_model.dart';
 import '../../../core/crud/crud.dart';
 import '../../../core/crud/state_status.dart';
@@ -19,7 +18,7 @@ class CartController extends GetxController {
   }
 
 StateRequest  stateRequest = StateRequest.none;
-  CartModel? cartModel;
+List<CartData> cartModel =[];
   getCartData() async {
     stateRequest = StateRequest.loading ;
     
@@ -28,10 +27,13 @@ StateRequest  stateRequest = StateRequest.none;
               url: AppLink.CART,
               token: token)
           .then((response) {
-        stateRequest = handleData(response.data);
+        stateRequest = handleData(response);
         if (StateRequest.success == stateRequest) {
-          cartModel = CartModel.fromJson(response.data);
-          if (cartModel!.status == true) {
+        
+          if (response.data['status'] == true && response.data != null) {
+              for (var item in response.data["cart_items"]) {
+  cartModel.add(CartData.fromJson(item));
+}
             print('get carts successfully');
             stateRequest = StateRequest.success ;
           } else {
@@ -56,15 +58,15 @@ StateRequest  stateRequest = StateRequest.none;
 
   int _quantity = 1;
 
-  void plusQuantity(CartModel model, index) {
-    _quantity = model.data!.cartItems[index].quantity!;
+  void plusQuantity(CartData model, index) {
+    _quantity = model.cartItems[index].quantity!;
     _quantity++;
     
     
   }
 
-  void minusQuantity(CartModel model, index) {
-    _quantity = model.data!.cartItems[index].quantity!;
+  void minusQuantity(CartData model, index) {
+    _quantity = model.cartItems[index].quantity!;
     if (_quantity > 1) {
       _quantity--;
     }
@@ -74,7 +76,7 @@ int  get quantity => _quantity;
 
   updateCart(String id, int quantity) async {
     
-     Crud.putData(
+   await  Crud.putData(
         url: AppLink.UPDATECARTS + id,
         token: myServices.sharedPreferences.getString('token').toString(),
         data: {'quantity': quantity}).then((response) {

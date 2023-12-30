@@ -13,35 +13,48 @@ class ViewAddressScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.lazyPut(() => OrderController());
     return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed:(){
+      appBar: AppBar(),
+      body: const AddressViewBody(),
+      floatingActionButton: FloatingActionButton(
+        onPressed:(){
         Get.to(()=> const OrdersScreen());
       },
       child: const Icon(Icons.add_location),
-      ),
-      appBar: AppBar(),
-      body: GetBuilder<OrderController>(builder:(controller) => 
-      HandlingDataView(
-        stateRequest: controller.stateRequest,
-        widget:
-         controller.address.isNotEmpty ?
-         SizedBox(
-           height: MediaQuery.of(context).size.height*1,
-           child: ListView.builder(
-            itemBuilder: (context, index) =>
-             BuildView(model:controller.address[index],),
-             itemCount: controller.address.length,
-             ),
-         ) : Center(child: Text('No address')),
-      )
-      ),
+      ),   
+    );
+  }
+}
+
+class AddressViewBody extends StatelessWidget {
+  const AddressViewBody({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<OrderController>(builder:(controller) => 
+    HandlingDataView(
+      stateRequest: controller.stateRequest,
+      widget:
+       controller.address.isNotEmpty ?
+       SizedBox(
+         height: MediaQuery.of(context).size.height*1,
+         child: ListView.builder(
+          itemBuilder: (context, index) =>
+           BuildView(model:controller.address[index],controller: controller),
+           itemCount: controller.address.length,
+           ),
+       ) : const Center(child: Text('No address')),
+    )
     );
   }
 }
 
 
-class BuildView extends GetView<OrderController> {
-   const BuildView({super.key,required this.model});
+class BuildView extends StatelessWidget {
+   const BuildView({super.key,required this.model,required this.controller});
 final  AddressDataModel model;
+final OrderController controller;
   @override
   Widget build(BuildContext context) {
     return Card(

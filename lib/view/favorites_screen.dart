@@ -30,7 +30,7 @@ class FavoritesScreen extends GetView<FavoritesController>{
                         crossAxisCount: 2,
                         crossAxisSpacing: 2,
                         mainAxisSpacing: 2,
-                        childAspectRatio: 1 / 1.20,
+                        childAspectRatio: 1 / 1.30,
                         children: List.generate(
                             controller.favoritesModel!.data.data.length,
                             (index) {

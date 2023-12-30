@@ -11,7 +11,7 @@ import '../../../core/shared/components/constants.dart';
 import '../../../models/cart_model.dart';
 
 class BuildCartsItems extends GetView<CartController> {
-  final CartData model;
+  final List<CartData> model;
   final int index;
 
   const BuildCartsItems({super.key, required this.model, required this.index});
@@ -23,7 +23,7 @@ class BuildCartsItems extends GetView<CartController> {
       child: InkWell(
         onTap: () {
           Get.put(ProductController())
-              .getProductData(model.cartItems[index].product!.id);
+              .getProductData(model[index].cartItems[index].product!.id);
         },
         child: Dismissible(
           direction: DismissDirection.startToEnd,
@@ -41,8 +41,8 @@ class BuildCartsItems extends GetView<CartController> {
                 align: TextAlign.start),
           ),
           onDismissed: (direction) => Get.find<HomeController>()
-              .changeCart(model.cartItems[index].product!.id),
-          key: Key(model.cartItems[index].id.toString()),
+              .changeCart(model[index].cartItems[index].product!.id),
+          key: Key(model[index].cartItems[index].id.toString()),
           child: Container(
             width: double.infinity,
             height: 110,
@@ -65,7 +65,7 @@ class BuildCartsItems extends GetView<CartController> {
                         color: const Color(0XFFF2F2F2),
                         borderRadius: BorderRadius.circular(10)),
                     child: CachedNetworkImage(
-                      imageUrl: '${model.cartItems[index].product!.image}',
+                      imageUrl: '${model[index].cartItems[index].product!.image}',
                       errorWidget: (context, url, error) =>
                           const Icon(Icons.error),
                     )),
@@ -83,7 +83,7 @@ class BuildCartsItems extends GetView<CartController> {
                             Expanded(
                               flex: 6,
                               child: defaultText(
-                                text: '${model.cartItems[index].product!.name}',
+                                text: '${model[index].cartItems[index].product!.name}',
                                 size: 15,
                                 color: Colors.black,
                               ),
@@ -103,14 +103,10 @@ class BuildCartsItems extends GetView<CartController> {
                                         padding: EdgeInsets.zero,
                                         iconSize: 20,
                                         onPressed: () {
-                                          controller.changeFavorites(model
-                                              .cartItems[index].product!.id!);
+                                          controller.changeFavorites(model[index].cartItems[index].product!.id!);
                                         },
                                         icon: Icon(Icons.favorite_sharp,
-                                            color: controller.favorites[model
-                                                    .cartItems[index]
-                                                    .product!
-                                                    .id!]
+                                            color: controller.favorites[model[index].cartItems[index].product!.id!]
                                                 ? kdefaultColor
                                                 : Colors.grey)) : const Icon(Icons.favorite_sharp),
                                   )),
@@ -126,7 +122,7 @@ class BuildCartsItems extends GetView<CartController> {
                           Expanded(
                             child: defaultText(
                                 text:
-                                    '${model.cartItems[index].product!.price}LE',
+                                    '${model[index].cartItems[index].product!.price}LE',
                                 size: 15,
                                 color: const Color(0XFFE49E62)),
                           ),
@@ -138,7 +134,7 @@ class BuildCartsItems extends GetView<CartController> {
                             icon: Icons.remove,
                           ),
                           Text(
-                            '${model.cartItems[index].quantity}',
+                            '${model[index].cartItems[index].quantity}',
                             style: const TextStyle(fontSize: 16),
                           ),
                           CustomMaterialButton(
@@ -161,18 +157,18 @@ class BuildCartsItems extends GetView<CartController> {
   }
 
   void plusQuantity() {
-    controller.plusQuantity(controller.cartModel!, index);
+    controller.plusQuantity(controller.cartModel[index], index);
     controller.updateCart(
-        model.cartItems[index].id.toString(), controller.quantity);
+        model[index].cartItems[index].id.toString(), controller.quantity);
   }
 
   void minusQuantity() {
-    if (model.cartItems[index].quantity! > 1) {
-      controller.minusQuantity(controller.cartModel!, index);
+    if (model[index].cartItems[index].quantity! > 1) {
+      controller.minusQuantity(controller.cartModel[index], index);
       controller.updateCart(
-          model.cartItems[index].id.toString(), controller.quantity);
+          model[index].cartItems[index].id.toString(), controller.quantity);
     } else {
-      Get.find<HomeController>().changeCart(model.cartItems[index].product!.id);
+      Get.find<HomeController>().changeCart(model[index].cartItems[index].product!.id);
     }
   }
 }

@@ -6,6 +6,7 @@ import 'package:test_app/core/crud/state_status.dart';
 import 'package:test_app/core/functions/check_internet.dart';
 import 'package:test_app/core/functions/handling_data.dart';
 import 'package:test_app/core/routes/app_routes.dart';
+import 'package:test_app/core/services/services.dart';
 import 'package:test_app/core/shared/network/remote/end_points.dart';
 import 'package:test_app/models/login_model.dart';
 
@@ -23,7 +24,7 @@ class SignupControllerImp extends SignupController {
 
   // SignupData signupData = SignupData(Get.find());
   StateRequest? stateRequest;
-
+  MyServices myServices = Get.find();
   LoginModel? model;
 
   @override
@@ -43,7 +44,11 @@ class SignupControllerImp extends SignupController {
         if (StateRequest.success == stateRequest) {
           if (model!.status == true) {
             stateRequest = StateRequest.success;
-            Get.offNamed(AppRoutes.layout);
+             myServices.sharedPreferences
+                .setString('token', '${model!.data!.token}')
+                .then((value) {
+              Get.offAllNamed(AppRoutes.layout);
+            });
           } else {
             Get.defaultDialog(
                 title: 'Warning',

@@ -1,4 +1,5 @@
 // ignore_for_file: avoid_print
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test_app/core/crud/crud.dart';
@@ -19,8 +20,8 @@ abstract class AppLoginController extends GetxController {
 }
 
 class AppLoginControllerImplemt extends AppLoginController {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  late TextEditingController emailController ;
+  late TextEditingController passwordController;
 
   MyServices myServices = Get.find();
 
@@ -33,11 +34,11 @@ class AppLoginControllerImplemt extends AppLoginController {
   goToForgotPass() {
     Get.to(() => ForgotPassScreen());
   }
-
+  
   
   LoginModel? model;
 
-  StateRequest? stateRequest;
+  StateRequest? stateRequest = StateRequest.none;
 
   @override
   userLogin() async {
@@ -50,6 +51,7 @@ class AppLoginControllerImplemt extends AppLoginController {
       }).then((value) {
         model = LoginModel.fromJson(value.data);
         stateRequest = handleData(value.data);
+        print(value.data);
         if (StateRequest.success == stateRequest) {
           if (model!.status == true) {
             stateRequest = StateRequest.success;
@@ -78,7 +80,10 @@ class AppLoginControllerImplemt extends AppLoginController {
   void onInit() {
     emailController = TextEditingController();
     passwordController = TextEditingController();
-
+    if(kDebugMode){
+      emailController.text = "ayak77431@gmail.com";
+      passwordController.text = "12345678";
+    }
     super.onInit();
   }
 
